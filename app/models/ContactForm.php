@@ -19,6 +19,6 @@ class ContactForm{
         $db->insertData($this->name, $this->email, $this->message);
 
         $sendmail = new Mailer();
-        $sendmail->sendMail($this->message);
+        $sendmail->sendMail($this->name, $this->email, $this->message);
     }
 };

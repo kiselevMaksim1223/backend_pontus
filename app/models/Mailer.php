@@ -1,9 +1,9 @@
 <?php
 
-require_once './vendor/phpmailer/src/PHPMailer.php';
-require_once './vendor/phpmailer/src/SMTP.php';
-require_once './vendor/phpmailer/src/Exception.php';
-require_once './config/EmailConfig.php';
+require_once '../vendor/phpmailer/src/PHPMailer.php';
+require_once '../vendor/phpmailer/src/SMTP.php';
+require_once '../vendor/phpmailer/src/Exception.php';
+require_once '../config/EmailConfig.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -26,7 +26,7 @@ class Mailer
     //     $this->message = $message;
     // }
 
-    public function sendMail($message){
+    public function sendMail($name, $email, $message){
         $mail = new PHPMailer(true);
 
         try {
@@ -46,9 +46,11 @@ class Mailer
             //Content
             $mail->isHTML(true);
             $mail->Subject = EMAIL_SUBJECT;
-            $mail->Body = $message;
+            $mail->Body = 'Name: ' . $name . '<br>Email: ' . $email . '<br>Message: ' . $message;;
 
-            $mail->send();
+            if($mail->send()){
+                echo "Mail sucssesfuly resieved ";
+            }
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }

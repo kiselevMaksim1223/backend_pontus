@@ -1,6 +1,6 @@
 <?php
 
-require_once '../config/DatabaseConfig.php'; //connect config file 
+require_once './config/DatabaseConfig.php'; //connect config file 
 
 class Database{
     //make variables private, so it can be used only in class

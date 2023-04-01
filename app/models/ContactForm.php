@@ -1,6 +1,7 @@
 <?php 
 
 require_once '../app/models/Database.php';
+require_once '../app/models/Mailer.php';
 
 class ContactForm{
     private $name;
@@ -16,5 +17,8 @@ class ContactForm{
     public function processData(){
         $db = new Database;
         $db->insertData($this->name, $this->email, $this->message);
+
+        $sendmail = new Mailer();
+        $sendmail->sendMail($this->message);
     }
 };

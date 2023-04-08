@@ -1,3 +1,4 @@
 .env
 config/DatabaseConfig.php
 config/EmailConfig.php
+vendor/

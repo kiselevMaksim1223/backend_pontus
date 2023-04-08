@@ -4,6 +4,10 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
+require_once __DIR__ . '/../vendor/autoload.php'; 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../'); //connect dotenv libriary ('/../' means found on up directory)
+$dotenv->load();
+
 
 require_once '../app/controllers/ContactController.php';
 
@@ -12,6 +16,7 @@ if($_POST){
     $contactController = new ContactController();
     $contactController->process();
 };
+
 
 
 

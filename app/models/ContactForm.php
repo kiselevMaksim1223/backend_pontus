@@ -8,6 +8,7 @@ class ContactForm{
     private $email;
     private $message;
 
+    
     public function __construct($name, $email, $message){
         $this->name = $name;
         $this->email = $email;

@@ -20,11 +20,19 @@ class Mailer
     private $address = EMAIL_FROM_ADDRESS;
     private $toaddress = EMAIL_TO_ADDRESS;
 
-    // private $message;
-
     // public function __construct($message){
     //     $this->message = $message;
     // }
+    private $messageSuccsess;
+    private $messageError;
+
+    public function getMessageSuccsess(){
+       return $this->messageSuccsess;
+    }
+
+    public function getMessageError(){
+        return $this->messageError;
+     }
 
     public function sendMail($name, $email, $message){
         $mail = new PHPMailer(true);
@@ -49,10 +57,10 @@ class Mailer
             $mail->Body = 'Name: ' . $name . '<br>Email: ' . $email . '<br>Message: ' . $message;;
 
             if($mail->send()){
-                echo "Mail sucssesfuly resieved ";
+                $this->messageSuccsess = "Mail sucssesfuly resieved ";
             }
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            $this->messageError = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
 }

@@ -14,7 +14,6 @@ class ContactController
 
             $contactForm = new ContactForm($name, $email, $message);
             $contactForm->processData();
-
         }
     }
 }

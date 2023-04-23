@@ -23,16 +23,14 @@ class Mailer
     // public function __construct($message){
     //     $this->message = $message;
     // }
-    private $messageSuccsess;
-    private $messageError;
+    private $messageMail;
+   
 
-    public function getMessageSuccsess(){
-       return $this->messageSuccsess;
+    public function getMessageMail(){
+       return $this->messageMail;
     }
 
-    public function getMessageError(){
-        return $this->messageError;
-     }
+    
 
     public function sendMail($name, $email, $message){
         $mail = new PHPMailer(true);
@@ -57,10 +55,10 @@ class Mailer
             $mail->Body = 'Name: ' . $name . '<br>Email: ' . $email . '<br>Message: ' . $message;;
 
             if($mail->send()){
-                $this->messageSuccsess = "Mail sucssesfuly resieved ";
+                $this->messageMail = "Mail sucssesfuly resieved ";
             }
         } catch (Exception $e) {
-            $this->messageError = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            $this->messageMail = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
 }

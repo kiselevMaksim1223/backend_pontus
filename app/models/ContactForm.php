@@ -18,8 +18,18 @@ class ContactForm{
     public function processData(){
         $db = new Database;
         $db->insertData($this->name, $this->email, $this->message);
+        $messageDB = $db->getMessageDB();
 
         $sendmail = new Mailer();
         $sendmail->sendMail($this->name, $this->email, $this->message);
+        $messageMail =  $sendmail->getMessageMail();
+
+        $response = array(
+            'messageMail' => $messageMail,
+            'messageDB' => $messageDB
+        );
+        
+        // Отправка массива в формате JSON на клиент
+        echo json_encode($response);
     }
 };

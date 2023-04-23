@@ -10,16 +10,11 @@ class Database
     private $password = DB_PASSWORD;
     private $database = DB_NAME;
 
-    private $messageSuccsess;
-    private $messageError;
+    private $messageDB;
 
-    public function getMessageSuccsess(){
-       return $this->messageSuccsess;
+    public function getMessageDB(){
+       return $this->messageDB;
     }
-
-    public function getMessageError(){
-        return $this->messageError;
-     }
 
 
     private $conn;  //make private variable that is used to establish a connection to the database
@@ -31,7 +26,7 @@ class Database
 
         if ($this->conn->connect_error) { //if connection failed throw error
             die("DB connection failed: " . $this->conn->connect_error);
-            $this->messageError = "DB connection failed: " . $this->conn->connect_error;
+            $this->messageDB = "DB connection failed: " . $this->conn->connect_error;
         }
     }
 
@@ -42,6 +37,6 @@ class Database
         $stmt->execute();
         $stmt->close();
 
-        $this->messageSuccsess = 'Data was saved in DB';
+        $this->messageDB = 'Data was saved in DB';
     }
 };
